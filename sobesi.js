@@ -3606,24 +3606,45 @@
 // Если в диапазоне присутствуют все буквы, возвращается undefined.
 
 
-function fearNotLetter(str) {
-    let result = []
-    let alphabet = `abcdefghijklmnopqrstuvwxyz`
-    result = alphabet.slice(alphabet.indexOf(str[0]), str.length+alphabet.indexOf(str[0])+1)
-    console.log( result)
-    let missingLetter
-    for (let i=0; i< result.length; i++) {
-        if ( result[i] !== str[i]) {
-            missingLetter = result[i]
-            break
+// function fearNotLetter(str) {
+//     let result = []
+//     let alphabet = `abcdefghijklmnopqrstuvwxyz`
+//     result = alphabet.slice(alphabet.indexOf(str[0]), str.length+alphabet.indexOf(str[0])+1)
+//     console.log( result)
+//     let missingLetter
+//     for (let i=0; i< result.length; i++) {
+//         if ( result[i] !== str[i]) {
+//             missingLetter = result[i]
+//             break
+//         }
+//     }
+//     return missingLetter
+// }
+//
+// //console.log(fearNotLetter("cdfg"))
+// console.log(fearNotLetter("stvwx"))
+
+//***
+//Напишите функцию, которая принимает два или более массивов и возвращает новый массив уникальных значений в порядке исходных массивов.
+// Другими словами, все значения из всех массивов должны быть включены в исходном порядке, но без дубликатов в конечном массиве.
+// Уникальные числа должны быть отсортированы по их исходному порядку, но итоговый массив не должен быть отсортирован в числовом порядке.
+
+function uniteUnique(arr, ...arg) {
+    let result = [...new Set(arr)]
+    let argArray = [...arg]
+    console.log(argArray)
+
+    for (let i = 0; i < argArray.length; i++) {
+        for (let j = 0; j < argArray[i].length; j++) {
+            if (!result.includes(argArray[i][j])) {
+                result.push(argArray[i][j])
+            }
         }
     }
-    return missingLetter
+    return result
 }
 
-//console.log(fearNotLetter("cdfg"))
-console.log(fearNotLetter("stvwx"))
-
-
-
+//console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
+//console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]))
+console.log(uniteUnique([1, 3, 2, 3], [5, 2, 1, 4], [2, 1]))
 
