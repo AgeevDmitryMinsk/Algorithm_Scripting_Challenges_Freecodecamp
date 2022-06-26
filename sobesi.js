@@ -3887,13 +3887,46 @@
 //Binary Agents
 // Return an English translated sentence of the passed binary string.
 // The binary string will be space separated.
+//
+// function binaryAgent(str) {
+//     return str.split(` `).map(el => parseInt(el, 2)).map(el => String.fromCharCode(el)).join(``)
+// }
+//
+// console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"))
+// //should return the string Aren't bonfires fun!?)
 
-function binaryAgent(str) {
-    return str.split(` `).map(el => parseInt(el, 2)).map(el => String.fromCharCode(el)).join(``)
+//***
+//Все быть истинным
+// Проверьте, является ли предикат (второй аргумент) истинным для всех элементов коллекции (первый аргумент).
+// Другими словами, вам дана коллекция объектов в виде массива. Предикат pre будет свойством объекта,
+// и вам нужно вернуть true, если его значение истинно. В противном случае верните false.
+// В JavaScript истинные значения - это значения, которые при оценке в булевом контексте переводятся в true.
+// Помните, что доступ к свойствам объекта можно получить с помощью точечной нотации или нотации []
+
+
+function truthCheck(collection, pre) {
+    return collection.every(el=> el[pre])
 }
 
-console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"))
-//should return the string Aren't bonfires fun!?)
+
+console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "name"))
+//should return true)
+
+console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot"))
+//should return false.)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
