@@ -3752,47 +3752,76 @@
 //     }
 // console.log(list)
 
-//****
-//Наименьшее общее кратное
-// Найдите наименьшее общее кратное НОК заданных параметров, которое можно равномерно разделить на оба параметра, а также на
-// все последовательные числа в диапазоне между этими параметрами. Диапазон будет представлять собой массив из двух
-// чисел, которые не обязательно будут расположены в числовом порядке.  Например, если даны 1 и 3, найдите наименьшее
-// общее кратное 1 и 3, которое также равномерно делится на все числа между 1 и 3. Ответом здесь будет 6.
+// //****
+// //Наименьшее общее кратное
+// // Найдите наименьшее общее кратное НОК заданных параметров, которое можно равномерно разделить на оба параметра, а также на
+// // все последовательные числа в диапазоне между этими параметрами. Диапазон будет представлять собой массив из двух
+// // чисел, которые не обязательно будут расположены в числовом порядке.  Например, если даны 1 и 3, найдите наименьшее
+// // общее кратное 1 и 3, которое также равномерно делится на все числа между 1 и 3. Ответом здесь будет 6.
+//
+//
+// function smallestCommons([first, last]) {
+//     let min = Math.min(first, last)
+//     let max = Math.max(first, last)
+//     function range(min, max) {
+//         let arr = [];
+//         for (let i = min; i <= max; i++) {
+//             arr.push(i);
+//         }
+//         console.log(arr)
+//         return arr;
+//
+//     }
+//
+//     function NOD(a, b) {
+//         return !b ? a : NOD(b, a % b);
+//     }
+//
+//     function HOK(a, b) {
+//         return (a * b) / NOD(a, b);
+//     }
+//
+//     let multiple = min;
+//     range(min, max).forEach(function(n) {
+//         multiple = HOK(multiple, n);
+//     });
+//
+//     return multiple;
+// }
+//
+// console.log(smallestCommons([ 5, 1])) // 60  -> 120
+// console.log(smallestCommons([2, 10])) // 2520 -> 3628800
 
 
-function smallestCommons([first, last]) {
-    let min = Math.min(first, last)
-    let max = Math.max(first, last)
-    function range(min, max) {
-        let arr = [];
-        for (let i = min; i <= max; i++) {
-            arr.push(i);
-        }
-        console.log(arr)
-        return arr;
+//***
+// Drop it
+//Задан массив arr, выполните итерацию и удалите каждый элемент, начиная с первого (индекс 0),
+// пока функция func не вернет true при передаче через нее итерируемого элемента.
+// Затем верните оставшуюся часть массива, если условие выполнено, иначе arr должен быть возвращен как пустой массив.
 
-    }
+//
+// function dropElements(arr, func) {  //1st method
+//     let newArr = []
+//     for (let i=0; i<arr.length; i++) {
+//         //debugger
+//         if (!func(arr[i] )) {
+//             newArr = arr.slice(i+1)
+//         }
+//         if (func(arr[i]) && i===0) newArr = arr
+//         if (func(arr[i])) break
+//     }
+//     return newArr;
+// }
 
-    function NOD(a, b) {
-        return !b ? a : NOD(b, a % b);
-    }
 
-    function HOK(a, b) {
-        return (a * b) / NOD(a, b);
-    }
-
-    let multiple = min;
-    range(min, max).forEach(function(n) {
-        multiple = HOK(multiple, n);
-    });
-
-    return multiple;
+function dropElements(arr, func) {  //2nd method
+    let sliceIndex = arr.findIndex(func)
+    return arr.slice(sliceIndex)
 }
 
-console.log(smallestCommons([ 5, 1])) // 60  -> 120
-console.log(smallestCommons([2, 10])) // 2520 -> 3628800
-
-
+console.log (dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}))  // [3,9,2]
+console.log(dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;})) // [7,4]
+console.log(dropElements([1, 2, 3], function(n) {return n > 0;}))  // [1, 2, 3]
 
 
 
