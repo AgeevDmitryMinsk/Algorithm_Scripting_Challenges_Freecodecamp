@@ -3693,26 +3693,78 @@
 // console.log(convertHTML("Schindler's List")) // Schindler&apos;s List
 //
 
-//***
-//Сумма всех нечетных чисел Фибоначчи
-// Если задано целое положительное число num, верните сумму всех нечетных чисел Фибоначчи, которые меньше или равны num.
-// Первые два числа в последовательности Фибоначчи - 1 и 1. Каждое последующее число в последовательности является
-// суммой двух предыдущих. Первые шесть чисел последовательности Фибоначчи - 1, 1, 2, 3, 5 и 8.
-// Например, sumFibs(10) должно вернуть 10, потому что все нечетные числа Фибоначчи, меньшие или равные 10, равны 1, 1, 3 и 5.
+// //***
+// //Сумма всех нечетных чисел Фибоначчи
+// // Если задано целое положительное число num, верните сумму всех нечетных чисел Фибоначчи, которые меньше или равны num.
+// // Первые два числа в последовательности Фибоначчи - 1 и 1. Каждое последующее число в последовательности является
+// // суммой двух предыдущих. Первые шесть чисел последовательности Фибоначчи - 1, 1, 2, 3, 5 и 8.
+// // Например, sumFibs(10) должно вернуть 10, потому что все нечетные числа Фибоначчи, меньшие или равные 10, равны 1, 1, 3 и 5.
+//
+// function sumFibs(num) {
+//     let result=[1, 1]
+//     for (let i=0; i< num-2; i++) {
+//         let nextNum = result[i] + result[i+1]
+//         result.push(nextNum)
+//
+//     }
+//     return result.filter(el=> (el%2!==0)&&(el<=num)).reduce((acc,curr)=> acc+curr,0)
+// }
+//
+// console.log(sumFibs(10)) // 10
+// console.log(sumFibs(1000)) // 1785
+// console.log(sumFibs(4000000))
+//
+// console.log(sumFibs(75024))
+// console.log(sumFibs(75025))
 
-function sumFibs(num) {
-    let result=[1, 1]
-    for (let i=0; i< num-2; i++) {
-        let nextNum = result[i] + result[i+1]
-        result.push(nextNum)
 
-    }
-    return result.filter(el=> (el%2!==0)&&(el<=num)).reduce((acc,curr)=> acc+curr,0)
+//*****
+//Сумма всех простых чисел
+// Простое число - это целое число больше 1, имеющее ровно два делителя: 1 и само себя. Например, 2 - простое число, потому
+// что оно делится только на 1 и 2. Напротив, 4 не является простым числом, так как оно делится на 1, 2 и 4.
+// Перепишите sumPrimes так, чтобы он возвращал сумму всех простых чисел, которые меньше или равны num.
+
+function sumPrimes(num) {
+    let result = []
+
+    nextPrime:
+        for (let i = 2; i <= num; i++) {
+            for (let j = 2; j < i; j++) {
+                if (i % j === 0) continue nextPrime;
+            }
+            result.push(i);
+        }
+    return result.reduce((acc, cur)=> acc+cur,0)
 }
 
-console.log(sumFibs(10)) // 10
-console.log(sumFibs(1000)) // 1785
-console.log(sumFibs(4000000))
+console.log(sumPrimes(10)) // 17
+console.log(sumPrimes(977)) // 73156
 
-console.log(sumFibs(75024))
-console.log(sumFibs(75025))
+
+// получение массива чисел от 0 до 100 :
+let list = []
+nextNumber:
+    for (let i = 2; i <= 100; i++) {
+        for (let j = 2; j < i; j++) {
+            if (i % j === 0) continue nextNumber;
+        }
+        list.push(i);
+    }
+console.log(list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
