@@ -3658,10 +3658,11 @@ function convertHTML(str) {
         '"': `&quot;`,
         "'": `&apos;`,
     }
-  return str.replace(/([&<>"'])/, x=>pairs[x])
+    return str.split(``).map(el=> pairs[el] || el).join(``) //3й способ
+  //return str.replace(/([&<>"'])/, x=>pairs[x]) // 2й способ
 
 
-    // let result = []
+    // let result = []  // 1й способ
     // for (let i=0; i< str.length; i++) {
     //     // console.log(str[i].toString())
     //     // console.log(2, str[i])
