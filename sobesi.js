@@ -3629,22 +3629,64 @@
 // Другими словами, все значения из всех массивов должны быть включены в исходном порядке, но без дубликатов в конечном массиве.
 // Уникальные числа должны быть отсортированы по их исходному порядку, но итоговый массив не должен быть отсортирован в числовом порядке.
 
-function uniteUnique(arr, ...arg) {
-    let result = [...new Set(arr)]
-    let argArray = [...arg]
-    console.log(argArray)
+// function uniteUnique(arr, ...arg) {
+//     let result = [...new Set(arr)]
+//     let argArray = [...arg]
+//     console.log(argArray)
+//
+//     for (let i = 0; i < argArray.length; i++) {
+//         for (let j = 0; j < argArray[i].length; j++) {
+//             if (!result.includes(argArray[i][j])) {
+//                 result.push(argArray[i][j])
+//             }
+//         }
+//     }
+//     return result
+// }
+//
+// //console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
+// //console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]))
+// console.log(uniteUnique([1, 3, 2, 3], [5, 2, 1, 4], [2, 1]))
 
-    for (let i = 0; i < argArray.length; i++) {
-        for (let j = 0; j < argArray[i].length; j++) {
-            if (!result.includes(argArray[i][j])) {
-                result.push(argArray[i][j])
-            }
-        }
+//*****
+//Преобразуйте символы &, <, >, " (двойная кавычка) и ' (апостроф) в строке в соответствующие им сущности HTML.
+function convertHTML(str) {
+    let pairs = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": `&gt;`,
+        '"': `&quot;`,
+        "'": `&apos;`,
     }
-    return result
+  return str.replace(/([&<>"'])/, x=>pairs[x])
+
+
+    // let result = []
+    // for (let i=0; i< str.length; i++) {
+    //     // console.log(str[i].toString())
+    //     // console.log(2, str[i])
+    //     switch (str[i].toString()) {
+    //         case `&`:
+    //             result.push(`&amp;`)
+    //             break
+    //         case `<`:
+    //             result.push(`&lt;`)
+    //             break
+    //         case `>`:
+    //             result.push(`&gt;`)
+    //             break
+    //         case `"`:
+    //             result.push(`&quot;`)
+    //             break
+    //         case `'`:
+    //             result.push(`&apos;`)
+    //             break
+    //         default:
+    //             result.push(str[i])
+    //     }
+    // }
+    // return result.join(``)
 }
 
-//console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
-//console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]))
-console.log(uniteUnique([1, 3, 2, 3], [5, 2, 1, 4], [2, 1]))
-
+console.log(convertHTML("Dolce & Gabbana")) // Dolce &amp; Gabbana
+console.log(convertHTML("Schindler's List")) // Schindler&apos;s List
