@@ -3648,46 +3648,71 @@
 // //console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]))
 // console.log(uniteUnique([1, 3, 2, 3], [5, 2, 1, 4], [2, 1]))
 
-//*****
-//Преобразуйте символы &, <, >, " (двойная кавычка) и ' (апостроф) в строке в соответствующие им сущности HTML.
-function convertHTML(str) {
-    let pairs = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": `&gt;`,
-        '"': `&quot;`,
-        "'": `&apos;`,
+// //*****
+// //Преобразуйте символы &, <, >, " (двойная кавычка) и ' (апостроф) в строке в соответствующие им сущности HTML.
+// function convertHTML(str) {
+//     let pairs = {
+//         "&": "&amp;",
+//         "<": "&lt;",
+//         ">": `&gt;`,
+//         '"': `&quot;`,
+//         "'": `&apos;`,
+//     }
+//     return str.split(``).map(el=> pairs[el] || el).join(``) //3й способ
+//   //return str.replace(/([&<>"'])/, x=>pairs[x]) // 2й способ
+//
+//
+//     // let result = []  // 1й способ
+//     // for (let i=0; i< str.length; i++) {
+//     //     // console.log(str[i].toString())
+//     //     // console.log(2, str[i])
+//     //     switch (str[i].toString()) {
+//     //         case `&`:
+//     //             result.push(`&amp;`)
+//     //             break
+//     //         case `<`:
+//     //             result.push(`&lt;`)
+//     //             break
+//     //         case `>`:
+//     //             result.push(`&gt;`)
+//     //             break
+//     //         case `"`:
+//     //             result.push(`&quot;`)
+//     //             break
+//     //         case `'`:
+//     //             result.push(`&apos;`)
+//     //             break
+//     //         default:
+//     //             result.push(str[i])
+//     //     }
+//     // }
+//     // return result.join(``)
+// }
+//
+// console.log(convertHTML("Dolce & Gabbana")) // Dolce &amp; Gabbana
+// console.log(convertHTML("Schindler's List")) // Schindler&apos;s List
+//
+
+//***
+//Сумма всех нечетных чисел Фибоначчи
+// Если задано целое положительное число num, верните сумму всех нечетных чисел Фибоначчи, которые меньше или равны num.
+// Первые два числа в последовательности Фибоначчи - 1 и 1. Каждое последующее число в последовательности является
+// суммой двух предыдущих. Первые шесть чисел последовательности Фибоначчи - 1, 1, 2, 3, 5 и 8.
+// Например, sumFibs(10) должно вернуть 10, потому что все нечетные числа Фибоначчи, меньшие или равные 10, равны 1, 1, 3 и 5.
+
+function sumFibs(num) {
+    let result=[1, 1]
+    for (let i=0; i< num-2; i++) {
+        let nextNum = result[i] + result[i+1]
+        result.push(nextNum)
+
     }
-    return str.split(``).map(el=> pairs[el] || el).join(``) //3й способ
-  //return str.replace(/([&<>"'])/, x=>pairs[x]) // 2й способ
-
-
-    // let result = []  // 1й способ
-    // for (let i=0; i< str.length; i++) {
-    //     // console.log(str[i].toString())
-    //     // console.log(2, str[i])
-    //     switch (str[i].toString()) {
-    //         case `&`:
-    //             result.push(`&amp;`)
-    //             break
-    //         case `<`:
-    //             result.push(`&lt;`)
-    //             break
-    //         case `>`:
-    //             result.push(`&gt;`)
-    //             break
-    //         case `"`:
-    //             result.push(`&quot;`)
-    //             break
-    //         case `'`:
-    //             result.push(`&apos;`)
-    //             break
-    //         default:
-    //             result.push(str[i])
-    //     }
-    // }
-    // return result.join(``)
+    return result.filter(el=> (el%2!==0)&&(el<=num)).reduce((acc,curr)=> acc+curr,0)
 }
 
-console.log(convertHTML("Dolce & Gabbana")) // Dolce &amp; Gabbana
-console.log(convertHTML("Schindler's List")) // Schindler&apos;s List
+console.log(sumFibs(10)) // 10
+console.log(sumFibs(1000)) // 1785
+console.log(sumFibs(4000000))
+
+console.log(sumFibs(75024))
+console.log(sumFibs(75025))
