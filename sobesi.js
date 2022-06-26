@@ -3724,33 +3724,73 @@
 // что оно делится только на 1 и 2. Напротив, 4 не является простым числом, так как оно делится на 1, 2 и 4.
 // Перепишите sumPrimes так, чтобы он возвращал сумму всех простых чисел, которые меньше или равны num.
 
-function sumPrimes(num) {
-    let result = []
+// function sumPrimes(num) {
+//     let result = []
+//
+//     nextPrime:
+//         for (let i = 2; i <= num; i++) {
+//             for (let j = 2; j < i; j++) {
+//                 if (i % j === 0) continue nextPrime;
+//             }
+//             result.push(i);
+//         }
+//     return result.reduce((acc, cur)=> acc+cur,0)
+// }
+//
+// console.log(sumPrimes(10)) // 17
+// console.log(sumPrimes(977)) // 73156
+//
+//
+// // получение массива чисел от 0 до 100 :
+// let list = []
+// nextNumber:
+//     for (let i = 2; i <= 100; i++) {
+//         for (let j = 2; j < i; j++) {
+//             if (i % j === 0) continue nextNumber;
+//         }
+//         list.push(i);
+//     }
+// console.log(list)
 
-    nextPrime:
-        for (let i = 2; i <= num; i++) {
-            for (let j = 2; j < i; j++) {
-                if (i % j === 0) continue nextPrime;
-            }
-            result.push(i);
+//****
+//Наименьшее общее кратное
+// Найдите наименьшее общее кратное НОК заданных параметров, которое можно равномерно разделить на оба параметра, а также на
+// все последовательные числа в диапазоне между этими параметрами. Диапазон будет представлять собой массив из двух
+// чисел, которые не обязательно будут расположены в числовом порядке.  Например, если даны 1 и 3, найдите наименьшее
+// общее кратное 1 и 3, которое также равномерно делится на все числа между 1 и 3. Ответом здесь будет 6.
+
+
+function smallestCommons([first, last]) {
+    let min = Math.min(first, last)
+    let max = Math.max(first, last)
+    function range(min, max) {
+        let arr = [];
+        for (let i = min; i <= max; i++) {
+            arr.push(i);
         }
-    return result.reduce((acc, cur)=> acc+cur,0)
+        console.log(arr)
+        return arr;
+
+    }
+
+    function NOD(a, b) {
+        return !b ? a : NOD(b, a % b);
+    }
+
+    function HOK(a, b) {
+        return (a * b) / NOD(a, b);
+    }
+
+    let multiple = min;
+    range(min, max).forEach(function(n) {
+        multiple = HOK(multiple, n);
+    });
+
+    return multiple;
 }
 
-console.log(sumPrimes(10)) // 17
-console.log(sumPrimes(977)) // 73156
-
-
-// получение массива чисел от 0 до 100 :
-let list = []
-nextNumber:
-    for (let i = 2; i <= 100; i++) {
-        for (let j = 2; j < i; j++) {
-            if (i % j === 0) continue nextNumber;
-        }
-        list.push(i);
-    }
-console.log(list)
+console.log(smallestCommons([ 5, 1])) // 60  -> 120
+console.log(smallestCommons([2, 10])) // 2520 -> 3628800
 
 
 
