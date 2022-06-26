@@ -3793,35 +3793,108 @@
 // console.log(smallestCommons([2, 10])) // 2520 -> 3628800
 
 
-//***
-// Drop it
-//Задан массив arr, выполните итерацию и удалите каждый элемент, начиная с первого (индекс 0),
-// пока функция func не вернет true при передаче через нее итерируемого элемента.
-// Затем верните оставшуюся часть массива, если условие выполнено, иначе arr должен быть возвращен как пустой массив.
-
+// //***
+// // Drop it
+// //Задан массив arr, выполните итерацию и удалите каждый элемент, начиная с первого (индекс 0),
+// // пока функция func не вернет true при передаче через нее итерируемого элемента.
+// // Затем верните оставшуюся часть массива, если условие выполнено, иначе arr должен быть возвращен как пустой массив.
 //
-// function dropElements(arr, func) {  //1st method
+// //
+// // function dropElements(arr, func) {  //1st method
+// //     let newArr = []
+// //     for (let i=0; i<arr.length; i++) {
+// //         //debugger
+// //         if (!func(arr[i] )) {
+// //             newArr = arr.slice(i+1)
+// //         }
+// //         if (func(arr[i]) && i===0) newArr = arr
+// //         if (func(arr[i])) break
+// //     }
+// //     return newArr;
+// // }
+//
+//
+// function dropElements(arr, func) {  //2nd method
+//     let sliceIndex = arr.findIndex(func)
+//     return arr.slice(sliceIndex)
+// }
+//
+// console.log (dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}))  // [3,9,2]
+// console.log(dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;})) // [7,4]
+// console.log(dropElements([1, 2, 3], function(n) {return n > 0;}))  // [1, 2, 3]
+
+
+//***
+//Steamroller - Сплющивание вложенного массива. Необходимо учитывать различные уровни вложенности.
+//
+// function steamrollArray(arr) {
+//     console.log(arr.length)
 //     let newArr = []
-//     for (let i=0; i<arr.length; i++) {
-//         //debugger
-//         if (!func(arr[i] )) {
-//             newArr = arr.slice(i+1)
+//     const flattenArray = (arr) => {
+//     arr.forEach((el)=> {
+//         if (!Array.isArray(el)) {
+//             newArr.push(el)
+//         } else {
+//             flattenArray(el)
 //         }
-//         if (func(arr[i]) && i===0) newArr = arr
-//         if (func(arr[i])) break
+//     })
 //     }
-//     return newArr;
+//     flattenArray(arr)
+//     return newArr
 // }
 
 
-function dropElements(arr, func) {  //2nd method
-    let sliceIndex = arr.findIndex(func)
-    return arr.slice(sliceIndex)
+// function steamrollArray(arr) { //2nd method  !!!!!!!!!!!!!!!!!!
+//     //console.log(arr.length)
+//     let newArr = []
+//     // Loop over array contents
+//     for (let i=0; i<arr.length; i++) {
+//         if (Array.isArray(arr[i])){
+//             // Recursively flatten entries that are arrays
+//             //  and push into the flattenedArray
+//             newArr.push(...steamrollArray(arr[i]))
+//         } else  {
+//             // Copy contents that are not arrays
+//             newArr.push(arr[i])
+//         }
+//     }
+//     return newArr
+// }
+
+// function steamrollArray(arr) { //2nd method
+//     let newArr =  [].concat(...arr)
+//     return newArr.some(Array.isArray) ? steamrollArray(newArr): newArr
+// }
+
+
+
+//steamrollArray([1, [2], [3, [[4]]]]);
+
+ //console.log(steamrollArray([1, [2], [3, [[4]]]])) // should return [1, 3, 4].)
+// let result = [1,2,3]
+// result.Arr
+//
+// console.log(Array.isArray(result))
+// console.log(result.join(`, `))
+// console.log([].concat([1,2,3]))
+// let emptyArray = []
+// let arr123 = [1,2,3]
+// console.log(emptyArray.concat([1,2,3]))
+//
+// console.log([...emptyArray, ...arr123])
+
+//****
+//Binary Agents
+// Return an English translated sentence of the passed binary string.
+// The binary string will be space separated.
+
+function binaryAgent(str) {
+    return str.split(` `).map(el => parseInt(el, 2)).map(el => String.fromCharCode(el)).join(``)
 }
 
-console.log (dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}))  // [3,9,2]
-console.log(dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;})) // [7,4]
-console.log(dropElements([1, 2, 3], function(n) {return n > 0;}))  // [1, 2, 3]
+console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"))
+//should return the string Aren't bonfires fun!?)
+
 
 
 
