@@ -3984,14 +3984,103 @@
 // console.log(7, addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
 
 
-console.log(null == undefined) // true
-console.log(false == 0) // true
-console.log(true == 1) // true
+// console.log(null == undefined) // true
+// console.log(false == 0) // true
+// console.log(true == 1) // true
+//
+// //FALSE
+// console.log(null == 0) //false
+// console.log(undefined == 0) //false
+// console.log(null == NaN) //false
 
-//FALSE
-console.log(null == 0) //false
-console.log(undefined == 0) //false
-console.log(null == NaN) //false
+//*************
+//Создайте человека -  Заполните конструктор объекта следующими методами, приведенными ниже:
+//getFirstName()
+// getLastName()
+// getFullName()
+// setFirstName(first)
+// setLastName(last)
+// setFullName(firstAndLast)
+//Запустите тесты, чтобы увидеть ожидаемый результат для каждого метода. Методы, принимающие аргумент, должны принимать
+// только один аргумент, и это должна быть строка. Эти методы должны быть единственным доступным средством взаимодействия с объектом.
+
+// class Book {
+//     constructor(author) {
+//         this._author = author;
+//     }
+//     // getter
+//     get writer() {
+//         return this._author;
+//     }
+//     // setter
+//     set writer(updatedAuthor) {
+//         this._author = updatedAuthor;
+//     }
+// }
+
+
+const Person = function (firstAndLast) {
+    // Only change code below this line
+    // Complete the method below and implement the others similarly
+
+    let fullName =  firstAndLast
+
+    this.getFullName = function () {
+        return fullName
+    };
+    this.getLastName = function () {
+        return fullName.split(` `)[1]
+    }
+    this.getFirstName = function () {
+        return fullName.split(` `)[0]
+    }
+    this.setFirstName = function (first) {
+        fullName = first + ` ` + fullName.split(` `)[1]
+    }
+
+    this.setLastName = function (last) {
+        fullName = fullName.split(` `)[0] + ` ` + last
+    }
+
+    this.setFullName = function( f_l) {
+        fullName = f_l
+    }
+};
+
+
+
+const bob = new Person('Bob Ross');
+console.log(bob)
+bob.getFullName();
+// console.log(bob.getFullName())
+// console.log(Object.keys(bob).length)
+// console.log(bob instanceof Person)
+// console.log(4034, bob.firstName) // undefined
+// console.log(bob.getFirstName()) // Bob
+// console.log(bob.getLastName()) // Ross
+// console.log(bob.getFullName()) // Bob Ross
+bob.setFirstName("Haskell")
+console.log(444, bob.getFullName()) // Haskell Ross
+bob.setLastName("Curry")
+console.log(555, bob.getFullName())
+bob.setFullName("Haskell Curry")
+console.log(bob.getFirstName()) // Haskell
+console.log(bob.getLastName())
+bob.setFullName("Dmitry Ageev")
+console.log(555, bob.getFullName()) // Dmitry Ageev
+//console.log('Bob Ross'.split(` `)[0])
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
