@@ -3902,31 +3902,44 @@
 // и вам нужно вернуть true, если его значение истинно. В противном случае верните false.
 // В JavaScript истинные значения - это значения, которые при оценке в булевом контексте переводятся в true.
 // Помните, что доступ к свойствам объекта можно получить с помощью точечной нотации или нотации []
+//
+//
+// function truthCheck(collection, pre) {
+//     return collection.every(el=> el[pre])
+// }
+//
+//
+// console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "name"))
+// //should return true)
+//
+// console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot"))
+// //should return false.)
 
 
-function truthCheck(collection, pre) {
-    return collection.every(el=> el[pre])
+for (let i=0; i<5; i++){
+    setTimeout(()=> console.log(i),1000)
 }
+//0 1 2 3 4
 
+for (i=0; i<10; i++){  // Variable i implicitly declared = Переменная i объявлена неявно
+    setTimeout(()=> console.log(i),1000)
+}
+// 5 5 5 5 5 5 5 5 5 5 5 5 // 10 раз выведет 5
 
-console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "name"))
-//should return true)
+for (var i=0; i<5; i++){
+    setTimeout(()=> console.log(i),1000)
+}
+// 5 5 5 5 5
 
-console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot"))
-//should return false.)
+for (let i=0; i<5; i++){
+    setTimeout(()=> console.log(i),1000)
+}
+// 0 1 2 3 4
 
-
-
-
-
-
-
-
-
-
-
-
-
+for (i=0; i<10; i++){  // Variable i implicitly declared = Переменная i объявлена неявно
+    console.log(3940, i)
+}
+// 0 1 2 3 4 5 6 7 8 9
 
 
 
