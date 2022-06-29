@@ -3951,38 +3951,47 @@
 // sumTwoAnd(3) возвращает 5.
 // Если один из аргументов не является действительным числом, возвращается undefined.
 
-function addTogether() {
+// function addTogether() {
+//
+//     if (typeof arguments[0] !== "number") return undefined//function new2NDFuncAddTogether() {}
+//
+//     if (typeof arguments[0] === "number") {
+//         let b = arguments[0]
+//         if (typeof arguments[1] === "undefined") return function new1STFunctionAddTogether() {
+//             if (typeof arguments[0] === "number") return arguments[0] + b
+//         }
+//         if ((typeof arguments[0] === "number") && (typeof arguments[1] === "number")) return arguments[0] + arguments[1]
+//     }
+//
+//     //if ((typeof arguments[0] !== "number") && (typeof arguments[1] === "number")) return undefined
+//
+//
+// }
+//
+//
+// console.log(1, addTogether(2, 3)) //5
+//
+// console.log(2, addTogether(2, "3")) // undefined
+//
+//
+// console.log(3, addTogether(5)(7)) //12
+//
+//
+// console.log(4, addTogether(2)([3])) // undefined
+// //console.log(5, addTogether("2")(3)) // undefined // Uncaught TypeError: addTogether(...) is not a function
+// console.log(6, addTogether("2", 3)) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
+//
+// console.log(7, addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
 
-    if (typeof arguments[0] !== "number") return undefined//function new2NDFuncAddTogether() {}
 
-    if (typeof arguments[0] === "number") {
-        let b = arguments[0]
-        if (typeof arguments[1] === "undefined") return function new1STFunctionAddTogether() {
-            if (typeof arguments[0] === "number") return arguments[0] + b
-        }
-        if ((typeof arguments[0] === "number") && (typeof arguments[1] === "number")) return arguments[0] + arguments[1]
-    }
+console.log(null == undefined) // true
+console.log(false == 0) // true
+console.log(true == 1) // true
 
-    //if ((typeof arguments[0] !== "number") && (typeof arguments[1] === "number")) return undefined
-
-
-}
-
-
-console.log(1, addTogether(2, 3)) //5
-
-console.log(2, addTogether(2, "3")) // undefined
-
-
-console.log(3, addTogether(5)(7)) //12
-
-
-console.log(4, addTogether(2)([3])) // undefined
-//console.log(5, addTogether("2")(3)) // undefined // Uncaught TypeError: addTogether(...) is not a function
-console.log(6, addTogether("2", 3)) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
-
-console.log(7, addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
-
+//FALSE
+console.log(null == 0) //false
+console.log(undefined == 0) //false
+console.log(null == NaN) //false
 
 
 
