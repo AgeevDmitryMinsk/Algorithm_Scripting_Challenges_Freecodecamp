@@ -3867,10 +3867,9 @@
 // }
 
 
-
 //steamrollArray([1, [2], [3, [[4]]]]);
 
- //console.log(steamrollArray([1, [2], [3, [[4]]]])) // should return [1, 3, 4].)
+//console.log(steamrollArray([1, [2], [3, [[4]]]])) // should return [1, 3, 4].)
 // let result = [1,2,3]
 // result.Arr
 //
@@ -3915,31 +3914,76 @@
 // console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot"))
 // //should return false.)
 
+// //*****
+// //var let  & w/o declaration = Variable i implicitly declared
+//
+// for (let i=0; i<5; i++){
+//     setTimeout(()=> console.log(i),1000)
+// }
+// //0 1 2 3 4
+//
+// for (i=0; i<10; i++){  // Variable i implicitly declared = Переменная i объявлена неявно
+//     setTimeout(()=> console.log(i),1000)
+// }
+// // 5 5 5 5 5 5 5 5 5 5 5 5 // 10 раз выведет 5
+//
+// for (var i=0; i<5; i++){
+//     setTimeout(()=> console.log(i),1000)
+// }
+// // 5 5 5 5 5
+//
+// for (let i=0; i<5; i++){
+//     setTimeout(()=> console.log(i),1000)
+// }
+// // 0 1 2 3 4
+//
+// for (i=0; i<10; i++){  // Variable i implicitly declared = Переменная i объявлена неявно
+//     console.log(3940, i)
+// }
+// // 0 1 2 3 4 5 6 7 8 9
 
-for (let i=0; i<5; i++){
-    setTimeout(()=> console.log(i),1000)
-}
-//0 1 2 3 4
+//*****
+//Аргументы Необязательные
+// Создайте функцию, которая суммирует два аргумента. Если указан только один аргумент, то возвращается функция, которая ожидает один аргумент и возвращает сумму.
+// Например, addTogether(2, 3) должна вернуть 5, а addTogether(2) - функцию.
+// Вызов этой возвращаемой функции с одним аргументом вернет сумму:
+// var sumTwoAnd = addTogether(2);
+// sumTwoAnd(3) возвращает 5.
+// Если один из аргументов не является действительным числом, возвращается undefined.
 
-for (i=0; i<10; i++){  // Variable i implicitly declared = Переменная i объявлена неявно
-    setTimeout(()=> console.log(i),1000)
-}
-// 5 5 5 5 5 5 5 5 5 5 5 5 // 10 раз выведет 5
+function addTogether() {
 
-for (var i=0; i<5; i++){
-    setTimeout(()=> console.log(i),1000)
-}
-// 5 5 5 5 5
+    if (typeof arguments[0] !== "number") return undefined//function new2NDFuncAddTogether() {}
 
-for (let i=0; i<5; i++){
-    setTimeout(()=> console.log(i),1000)
-}
-// 0 1 2 3 4
+    if (typeof arguments[0] === "number") {
+        let b = arguments[0]
+        if (typeof arguments[1] === "undefined") return function new1STFunctionAddTogether() {
+            if (typeof arguments[0] === "number") return arguments[0] + b
+        }
+        if ((typeof arguments[0] === "number") && (typeof arguments[1] === "number")) return arguments[0] + arguments[1]
+    }
 
-for (i=0; i<10; i++){  // Variable i implicitly declared = Переменная i объявлена неявно
-    console.log(3940, i)
+    //if ((typeof arguments[0] !== "number") && (typeof arguments[1] === "number")) return undefined
+
+
 }
-// 0 1 2 3 4 5 6 7 8 9
+
+
+console.log(1, addTogether(2, 3)) //5
+
+console.log(2, addTogether(2, "3")) // undefined
+
+
+console.log(3, addTogether(5)(7)) //12
+
+
+console.log(4, addTogether(2)([3])) // undefined
+//console.log(5, addTogether("2")(3)) // undefined // Uncaught TypeError: addTogether(...) is not a function
+console.log(6, addTogether("2", 3)) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
+
+console.log(7, addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) // undefined //  ƒ new2NDFuncAddTogether() {return undefined}
+
+
 
 
 
