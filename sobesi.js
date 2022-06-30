@@ -4120,46 +4120,70 @@
 // console.log(palindrome("_eye"))
 // console.log(palindrome("1 eye for of 1 eye."))
 
-//**********
-//Roman Numeral Converter
-// Convert the given number into a roman numeral.
+// //**********
+// //Roman Numeral Converter
+// // Convert the given number into a roman numeral.
+// //
+// // Roman numerals	Arabic numerals
+// // M	1000
+// // CM	900
+// // D	500
+// // CD	400
+// // C	100
+// // XC	90
+// // L	50
+// // XL	40
+// // X	10
+// // IX	9
+// // V	5
+// // IV	4
+// // I	1
+// // All roman numerals answers should be provided in upper-case.
 //
-// Roman numerals	Arabic numerals
-// M	1000
-// CM	900
-// D	500
-// CD	400
-// C	100
-// XC	90
-// L	50
-// XL	40
-// X	10
-// IX	9
-// V	5
-// IV	4
-// I	1
-// All roman numerals answers should be provided in upper-case.
+//
+// function convertToRoman(num) {
+//     let romanNumerals = [`M`,      `CM`,  `D`,   `CD`,  `C`,  `XC`, `L`, `XL`, `X`, `IX`, `V`, `IV`, `I`]
+//     let arabicNumerals = [`1000`, `900`, `500`, `400`, `100`, `90`, `50`, `40`, `10`, `9`, `5`, `4`, `1`]
+//     let romanizedNumber= ''
+//     for (let index=0; index< romanNumerals.length; index++){
+//         while (arabicNumerals[index]<=num){
+//             romanizedNumber += romanNumerals[index]
+//             num -=arabicNumerals[index]
+//         }
+//     }
+//
+//     return romanizedNumber;
+// }
+//
+// console.log(convertToRoman(18))
 
+//*********
+//Шифр Цезаря (Caesars Cipher)
+// Одним из самых простых и широко известных шифров является шифр Цезаря, также известный как шифр сдвига. В шифре сдвига
+// значения букв сдвигаются на некоторую заданную величину. В современных условиях часто используется шифр ROT13, в котором
+// значения букв сдвигаются на 13 мест. Таким образом, A ↔ N, B ↔ O и так далее. Напишите функцию, которая принимает на
+// вход строку, закодированную ROT13, и возвращает декодированную строку. Все буквы будут в верхнем регистре.
+// Не преобразуйте никакие неалфавитные символы (т.е. пробелы, знаки препинания), но передайте их.
 
-function convertToRoman(num) {
-    let romanNumerals = [`M`,      `CM`,  `D`,   `CD`,  `C`,  `XC`, `L`, `XL`, `X`, `IX`, `V`, `IV`, `I`]
-    let arabicNumerals = [`1000`, `900`, `500`, `400`, `100`, `90`, `50`, `40`, `10`, `9`, `5`, `4`, `1`]
-    let romanizedNumber= ''
-    for (let index=0; index< romanNumerals.length; index++){
-        while (arabicNumerals[index]<=num){
-            romanizedNumber += romanNumerals[index]
-            num -=arabicNumerals[index]
-        }
-    }
+function rot13(str) {
+    let letterNormal =     [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`]
+    let letterWithCipher = [`N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`]
+    let strWithDecoder = ``
+    strWithDecoder = str.split(``).map((el, ind) => {
+        let indLetterWithCipher = letterWithCipher.indexOf(el)
 
-    return romanizedNumber;
+        console.log(indLetterWithCipher)
+        let newLetter = letterNormal[indLetterWithCipher]
+
+        strWithDecoder += indLetterWithCipher === -1 ? el: newLetter
+        return strWithDecoder
+    })
+    return strWithDecoder.slice(-1).join(``)
 }
 
-console.log(convertToRoman(18))
-
-
-
-
+console.log(rot13("SERR PBQR PNZC"))
+console.log(rot13("SERR CVMMN!"))
+console.log(rot13("SERR YBIR?"))
 
 
 
