@@ -4157,40 +4157,81 @@
 //
 // console.log(convertToRoman(18))
 
-//*********
-//Шифр Цезаря (Caesars Cipher)
-// Одним из самых простых и широко известных шифров является шифр Цезаря, также известный как шифр сдвига. В шифре сдвига
-// значения букв сдвигаются на некоторую заданную величину. В современных условиях часто используется шифр ROT13, в котором
-// значения букв сдвигаются на 13 мест. Таким образом, A ↔ N, B ↔ O и так далее. Напишите функцию, которая принимает на
-// вход строку, закодированную ROT13, и возвращает декодированную строку. Все буквы будут в верхнем регистре.
-// Не преобразуйте никакие неалфавитные символы (т.е. пробелы, знаки препинания), но передайте их.
+// //*********
+// //Шифр Цезаря (Caesars Cipher)
+// // Одним из самых простых и широко известных шифров является шифр Цезаря, также известный как шифр сдвига. В шифре сдвига
+// // значения букв сдвигаются на некоторую заданную величину. В современных условиях часто используется шифр ROT13, в котором
+// // значения букв сдвигаются на 13 мест. Таким образом, A ↔ N, B ↔ O и так далее. Напишите функцию, которая принимает на
+// // вход строку, закодированную ROT13, и возвращает декодированную строку. Все буквы будут в верхнем регистре.
+// // Не преобразуйте никакие неалфавитные символы (т.е. пробелы, знаки препинания), но передайте их.
+//
+// function rot13(str) {
+//     let letterNormal =     [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`]
+//     let letterWithCipher = [`N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`]
+//     let strWithDecoder = ``
+//     strWithDecoder = str.split(``).map((el, ind) => {
+//         let indLetterWithCipher = letterWithCipher.indexOf(el)
+//
+//         console.log(indLetterWithCipher)
+//         let newLetter = letterNormal[indLetterWithCipher]
+//
+//         strWithDecoder += indLetterWithCipher === -1 ? el: newLetter
+//         return strWithDecoder
+//     })
+//     return strWithDecoder.slice(-1).join(``)
+// }
+//
+// console.log(rot13("SERR PBQR PNZC"))
+// console.log(rot13("SERR CVMMN!"))
+// console.log(rot13("SERR YBIR?"))
 
-function rot13(str) {
-    let letterNormal =     [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`]
-    let letterWithCipher = [`N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`]
-    let strWithDecoder = ``
-    strWithDecoder = str.split(``).map((el, ind) => {
-        let indLetterWithCipher = letterWithCipher.indexOf(el)
 
-        console.log(indLetterWithCipher)
-        let newLetter = letterNormal[indLetterWithCipher]
 
-        strWithDecoder += indLetterWithCipher === -1 ? el: newLetter
-        return strWithDecoder
-    })
-    return strWithDecoder.slice(-1).join(``)
+//*******
+//Валидатор телефонных номеров (Telephone Number Validator)
+// Возвращает true, если переданная строка похожа на действительный телефонный номер США.
+// Пользователь может заполнить поле формы любым удобным для него способом, если оно имеет формат действительного номера США.
+// Ниже приведены примеры допустимых форматов американских номеров (другие варианты см. в тестах ниже):
+// 555-555-5555
+// (555)555-5555
+// (555) 555-5555
+// 555 555 5555
+// 5555555555
+// 1 555 555 5555
+// В этом задании вам будет предложена такая строка, как 800-692-7753 или 8oo-six427676;laskdjf. Ваша задача - подтвердить
+// или отклонить американский телефонный номер на основе любой комбинации форматов, представленных выше. Код города
+// обязателен. Если указан код страны, вы должны подтвердить, что код страны равен 1. Верните true, если строка является
+// действительным телефонным номером США; в противном случае верните false.
+
+function telephoneCheck(str) {
+
+
+    let result;
+    let formats = [
+        /^\d\d\d\d\d\d\d\d\d\d$/,			// 5555555555
+        /^\d\d\d-\d\d\d-\d\d\d\d/,			// 555-555-5555
+        /^\d\d\d\s\d\d\d\s\d\d\d\d/,		// 555 555 5555
+        /^\(\d\d\d\)\d\d\d-\d\d\d\d/,		// (555)555-5555
+        /^\(\d\d\d\)\s\d\d\d-\d\d\d\d/,		// (555) 555-5555
+        /^1\d\d\d\d\d\d\d\d\d\d/,			// 15555555555
+        /^1\s\d\d\d\s\d\d\d\s\d\d\d\d/,		// 1 555 555 5555
+        /^1\s\d\d\d-\d\d\d-\d\d\d\d/,		// 1 555-555-5555
+        /^1\(\d\d\d\)\d\d\d-\d\d\d\d/,		// 1(555)555-5555
+        /^1\s\(\d\d\d\)\s\d\d\d-\d\d\d\d/	// 1 (555) 555-5555
+    ];
+
+    result = formats.some(reg => reg.test(str));
+
+    return result;
 }
 
-console.log(rot13("SERR PBQR PNZC"))
-console.log(rot13("SERR CVMMN!"))
-console.log(rot13("SERR YBIR?"))
 
 
-
-
-
-
-
+ console.log(telephoneCheck("555-555-5555")) // true
+console.log(telephoneCheck("(555)5(55?)-5555")) // false
+console.log(telephoneCheck("-1 (757) 622-7382"))
+console.log(telephoneCheck("1 555-555-5555"))
+console.log(telephoneCheck("(6054756961)"))
 
 
 
