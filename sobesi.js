@@ -4098,28 +4098,64 @@
 // // [{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}]
 
 
-//***********
-//Проверка палиндрома
-// Возвращает true, если заданная строка является палиндромом. В противном случае возвращается false.
-// Палиндром - это слово или предложение, которое пишется одинаково как вперед, так и назад, без учета пунктуации,
-// регистра и интервалов. // Примечание: Для проверки палиндромов необходимо удалить все неалфавитне символы
-// (знаки препинания, пробелы и символы) и привести все слова к одному регистру (нижнему или верхнему).
-// Мы будем передавать строки с различными форматами, такими как racecar, RaceCar, race CAR и др.
-// Мы также будем передавать строки со специальными символами, такими как 2A3*3a2, 2A3 3a2 и 2_A3*3#A2.
+// //***********
+// //Проверка палиндрома
+// // Возвращает true, если заданная строка является палиндромом. В противном случае возвращается false.
+// // Палиндром - это слово или предложение, которое пишется одинаково как вперед, так и назад, без учета пунктуации,
+// // регистра и интервалов. // Примечание: Для проверки палиндромов необходимо удалить все неалфавитне символы
+// // (знаки препинания, пробелы и символы) и привести все слова к одному регистру (нижнему или верхнему).
+// // Мы будем передавать строки с различными форматами, такими как racecar, RaceCar, race CAR и др.
+// // Мы также будем передавать строки со специальными символами, такими как 2A3*3a2, 2A3 3a2 и 2_A3*3#A2.
+//
+// function palindrome(str) {
+//      let strWithOutDigitalsAndSymbols = str.replace(/\W|_/gi, ``).toLowerCase()
+//
+//     let strReversed = strWithOutDigitalsAndSymbols.split(``).reverse().join(``)
+//     console.log(strWithOutDigitalsAndSymbols, strReversed)
+//     return strWithOutDigitalsAndSymbols === strReversed
+// }
+//
+// console.log(palindrome("eyev")) //// true
+// console.log(palindrome("My age is 0, 0 si ega ym.")) // true
+// console.log(palindrome("_eye"))
+// console.log(palindrome("1 eye for of 1 eye."))
 
-function palindrome(str) {
-     let strWithOutDigitalsAndSymbols = str.replace(/\W|_/gi, ``).toLowerCase()
+//**********
+//Roman Numeral Converter
+// Convert the given number into a roman numeral.
+//
+// Roman numerals	Arabic numerals
+// M	1000
+// CM	900
+// D	500
+// CD	400
+// C	100
+// XC	90
+// L	50
+// XL	40
+// X	10
+// IX	9
+// V	5
+// IV	4
+// I	1
+// All roman numerals answers should be provided in upper-case.
 
-    let strReversed = strWithOutDigitalsAndSymbols.split(``).reverse().join(``)
-    console.log(strWithOutDigitalsAndSymbols, strReversed)
-    return strWithOutDigitalsAndSymbols === strReversed
+
+function convertToRoman(num) {
+    let romanNumerals = [`M`,      `CM`,  `D`,   `CD`,  `C`,  `XC`, `L`, `XL`, `X`, `IX`, `V`, `IV`, `I`]
+    let arabicNumerals = [`1000`, `900`, `500`, `400`, `100`, `90`, `50`, `40`, `10`, `9`, `5`, `4`, `1`]
+    let romanizedNumber= ''
+    for (let index=0; index< romanNumerals.length; index++){
+        while (arabicNumerals[index]<=num){
+            romanizedNumber += romanNumerals[index]
+            num -=arabicNumerals[index]
+        }
+    }
+
+    return romanizedNumber;
 }
 
-console.log(palindrome("eyev")) //// true
-console.log(palindrome("My age is 0, 0 si ega ym.")) // true
-console.log(palindrome("_eye"))
-console.log(palindrome("1 eye for of 1 eye."))
-
+console.log(convertToRoman(18))
 
 
 
