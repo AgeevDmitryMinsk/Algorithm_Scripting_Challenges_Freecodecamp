@@ -4070,37 +4070,55 @@
 // console.log(555, bob.getFullName()) // Dmitry Ageev
 // //console.log('Bob Ross'.split(` `)[0])
 
-//**********
-//Составьте карту обломков
-// Согласно третьему закону Кеплера, орбитальный период T двух точечных масс, вращающихся друг вокруг друга по
-// круговой или эллиптической орбите, равен: T = Math.round(2 * Math.PI * Math.sqrt(Math.pow(a, 3) / GM))
-//a - полубольшая ось орбиты  (a = earthRadius + avgAlt)
-// μ=GM - стандартный гравитационный параметр
-// G - гравитационная постоянная,
-// M - масса более массивного тела.
-// Возвращает новый массив, который преобразует среднюю высоту элементов в их орбитальные периоды (в секундах).
-// Массив будет содержать объекты в формате {name: 'name', avgAlt: avgAlt}.
-// Значения должны быть округлены до ближайшего целого числа. Тело на орбите - Земля.
-// Радиус Земли составляет 6367,4447 км, а значение GM Земли - 398600,4418 км3с-2
+// //**********
+// //Составьте карту обломков
+// // Согласно третьему закону Кеплера, орбитальный период T двух точечных масс, вращающихся друг вокруг друга по
+// // круговой или эллиптической орбите, равен: T = Math.round(2 * Math.PI * Math.sqrt(Math.pow(a, 3) / GM))
+// //a - полубольшая ось орбиты  (a = earthRadius + avgAlt)
+// // μ=GM - стандартный гравитационный параметр
+// // G - гравитационная постоянная,
+// // M - масса более массивного тела.
+// // Возвращает новый массив, который преобразует среднюю высоту элементов в их орбитальные периоды (в секундах).
+// // Массив будет содержать объекты в формате {name: 'name', avgAlt: avgAlt}.
+// // Значения должны быть округлены до ближайшего целого числа. Тело на орбите - Земля.
+// // Радиус Земли составляет 6367,4447 км, а значение GM Земли - 398600,4418 км3с-2
+//
+// function orbitalPeriod(arr) {
+//     const GM = 398600.4418;
+//     const earthRadius = 6367.4447;
+//     return arr.map(({name, avgAlt})=> {
+//         let a = earthRadius + avgAlt
+//         let orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(a, 3) / GM))
+//         return {name, orbitalPeriod}
+//     });
+// }
+//
+// console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}])) // [{name: "sputnik", orbitalPeriod: 86400}].
+// console.log(orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}]))
+// // [{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}]
 
 
-function orbitalPeriod(arr) {
-    const GM = 398600.4418;
-    const earthRadius = 6367.4447;
-    return arr.map(({name, avgAlt})=> {
-        let a = earthRadius + avgAlt
-        let orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(a, 3) / GM))
-        return {name, orbitalPeriod}
-    });
+//***********
+//Проверка палиндрома
+// Возвращает true, если заданная строка является палиндромом. В противном случае возвращается false.
+// Палиндром - это слово или предложение, которое пишется одинаково как вперед, так и назад, без учета пунктуации,
+// регистра и интервалов. // Примечание: Для проверки палиндромов необходимо удалить все неалфавитне символы
+// (знаки препинания, пробелы и символы) и привести все слова к одному регистру (нижнему или верхнему).
+// Мы будем передавать строки с различными форматами, такими как racecar, RaceCar, race CAR и др.
+// Мы также будем передавать строки со специальными символами, такими как 2A3*3a2, 2A3 3a2 и 2_A3*3#A2.
+
+function palindrome(str) {
+     let strWithOutDigitalsAndSymbols = str.replace(/\W|_/gi, ``).toLowerCase()
+
+    let strReversed = strWithOutDigitalsAndSymbols.split(``).reverse().join(``)
+    console.log(strWithOutDigitalsAndSymbols, strReversed)
+    return strWithOutDigitalsAndSymbols === strReversed
 }
 
-console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]))
-console.log(orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}]))
-
-
-
-
-
+console.log(palindrome("eyev")) //// true
+console.log(palindrome("My age is 0, 0 si ega ym.")) // true
+console.log(palindrome("_eye"))
+console.log(palindrome("1 eye for of 1 eye."))
 
 
 
