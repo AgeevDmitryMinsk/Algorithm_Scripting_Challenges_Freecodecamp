@@ -4009,66 +4009,108 @@
 //         this._author = author;
 //     }
 //     // getter
-//     get writer() {
+//     get writer() { // у геттера есть ретурн
 //         return this._author;
 //     }
 //     // setter
-//     set writer(updatedAuthor) {
+//     set writer(updatedAuthor) { // у сеттера нету ретурна
 //         this._author = updatedAuthor;
 //     }
 // }
 
+//
+// const Person = function (firstAndLast) {
+//     // Only change code below this line
+//     // Complete the method below and implement the others similarly
+//
+//     let fullName =  firstAndLast
+//
+//     this.getFullName = function () {
+//         return fullName
+//     };
+//     this.getLastName = function () {
+//         return fullName.split(` `)[1]
+//     }
+//     this.getFirstName = function () {
+//         return fullName.split(` `)[0]
+//     }
+//     this.setFirstName = function (first) {
+//         fullName = first + ` ` + fullName.split(` `)[1]
+//     }
+//
+//     this.setLastName = function (last) {
+//         fullName = fullName.split(` `)[0] + ` ` + last
+//     }
+//
+//     this.setFullName = function( f_l) {
+//         fullName = f_l
+//     }
+// };
+//
+//
+//
+// const bob = new Person('Bob Ross');
+// console.log(bob)
+// bob.getFullName();
+// // console.log(bob.getFullName())
+// // console.log(Object.keys(bob).length)
+// // console.log(bob instanceof Person)
+// // console.log(4034, bob.firstName) // undefined
+// // console.log(bob.getFirstName()) // Bob
+// // console.log(bob.getLastName()) // Ross
+// // console.log(bob.getFullName()) // Bob Ross
+// bob.setFirstName("Haskell")
+// console.log(444, bob.getFullName()) // Haskell Ross
+// bob.setLastName("Curry")
+// console.log(555, bob.getFullName())
+// bob.setFullName("Haskell Curry")
+// console.log(bob.getFirstName()) // Haskell
+// console.log(bob.getLastName())
+// bob.setFullName("Dmitry Ageev")
+// console.log(555, bob.getFullName()) // Dmitry Ageev
+// //console.log('Bob Ross'.split(` `)[0])
 
-const Person = function (firstAndLast) {
-    // Only change code below this line
-    // Complete the method below and implement the others similarly
-
-    let fullName =  firstAndLast
-
-    this.getFullName = function () {
-        return fullName
-    };
-    this.getLastName = function () {
-        return fullName.split(` `)[1]
-    }
-    this.getFirstName = function () {
-        return fullName.split(` `)[0]
-    }
-    this.setFirstName = function (first) {
-        fullName = first + ` ` + fullName.split(` `)[1]
-    }
-
-    this.setLastName = function (last) {
-        fullName = fullName.split(` `)[0] + ` ` + last
-    }
-
-    this.setFullName = function( f_l) {
-        fullName = f_l
-    }
-};
+//**********
+//Составьте карту обломков
+// Согласно третьему закону Кеплера, орбитальный период T двух точечных масс, вращающихся друг вокруг друга по
+// круговой или эллиптической орбите, равен: T = Math.round(2 * Math.PI * Math.sqrt(Math.pow(a, 3) / GM))
+//a - полубольшая ось орбиты  (a = earthRadius + avgAlt)
+// μ=GM - стандартный гравитационный параметр
+// G - гравитационная постоянная,
+// M - масса более массивного тела.
+// Возвращает новый массив, который преобразует среднюю высоту элементов в их орбитальные периоды (в секундах).
+// Массив будет содержать объекты в формате {name: 'name', avgAlt: avgAlt}.
+// Значения должны быть округлены до ближайшего целого числа. Тело на орбите - Земля.
+// Радиус Земли составляет 6367,4447 км, а значение GM Земли - 398600,4418 км3с-2
 
 
+function orbitalPeriod(arr) {
+    const GM = 398600.4418;
+    const earthRadius = 6367.4447;
+    return arr.map(({name, avgAlt})=> {
+        let a = earthRadius + avgAlt
+        let orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(a, 3) / GM))
+        return {name, orbitalPeriod}
+    });
+}
 
-const bob = new Person('Bob Ross');
-console.log(bob)
-bob.getFullName();
-// console.log(bob.getFullName())
-// console.log(Object.keys(bob).length)
-// console.log(bob instanceof Person)
-// console.log(4034, bob.firstName) // undefined
-// console.log(bob.getFirstName()) // Bob
-// console.log(bob.getLastName()) // Ross
-// console.log(bob.getFullName()) // Bob Ross
-bob.setFirstName("Haskell")
-console.log(444, bob.getFullName()) // Haskell Ross
-bob.setLastName("Curry")
-console.log(555, bob.getFullName())
-bob.setFullName("Haskell Curry")
-console.log(bob.getFirstName()) // Haskell
-console.log(bob.getLastName())
-bob.setFullName("Dmitry Ageev")
-console.log(555, bob.getFullName()) // Dmitry Ageev
-//console.log('Bob Ross'.split(` `)[0])
+console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]))
+console.log(orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
